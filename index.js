@@ -122,8 +122,23 @@ app.get("/", (req, res, next)=>{
   res.send("You're not supposed to see this.")
 })
 
-app.listen(8000, ()=>{
-  console.log("started")
-  client.login(process.env.DISCORD_TOKEN);
-})
+app.listen(8000, () => {
+  console.log("Server started on port 8000");
+  loginToDiscord();
+});
 
+function loginToDiscord() {
+  client.login(process.env.DISCORD_TOKEN).catch(console.error);
+}
+
+const reconnectInterval = setInterval(() => {
+ client
+   .destroy()
+   .then(() => {
+     return client.login(process.env.DISCORD_TOKEN);
+   })
+   .catch(console.error);}, 1000 * 60 * 10);
+
+process.on("exit", () => {
+  clearInterval(reconnectInterval);
+});
