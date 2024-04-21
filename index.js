@@ -1,7 +1,8 @@
 require("dotenv").config();
 
-const express = require('express')
-const app = express()
+const express = require("express");
+const app = express();
+const fetch = require("axios");
 
 const fs = require("node:fs");
 const path = require("node:path");
@@ -118,26 +119,38 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-app.get("/", (req, res, next)=>{
-  res.send("You're not supposed to see this.")
-})
+app.get("/", (req, res, next) => {
+  res.send("You're not supposed to see this.");
+});
 
 app.listen(8000, () => {
   console.log("Server started on port 8000");
   loginToDiscord();
+  setInterval(keepAlive, 1000 * 60 * 4);
 });
 
 function loginToDiscord() {
-  client.login(process.env.DISCORD_TOKEN).catch(console.error);
+  client
+    .destroy()
+    .then(() => {
+      return client.login(process.env.DISCORD_TOKEN);
+    })
+    .catch(console.error);
 }
 
+async function keepAlive() {
+  try {
+    const response = await axios.get(`https://discord-wawy.onrender.com`);
+    console.log(`keepAlive response: ${response.status}`);
+  } catch (err) {
+    console.error(`keepAlive failed: ${err.message}`);
+  }
+}
+
+// Reconnect to Discord every 10 minutes
 const reconnectInterval = setInterval(() => {
- client
-   .destroy()
-   .then(() => {
-     return client.login(process.env.DISCORD_TOKEN);
-   })
-   .catch(console.error);}, 1000 * 60 * 10);
+  loginToDiscord();
+}, 1000 * 60 * 10);
 
 process.on("exit", () => {
   clearInterval(reconnectInterval);
