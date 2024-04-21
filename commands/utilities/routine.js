@@ -6,7 +6,7 @@ module.exports = {
     .setName("routine")
     .setDescription("get today's routine"),
   async execute(interaction) {
-      if(new Date().getDay() === 0)
+      if(new Date().getDay() === 6)
       
       await interaction.reply("# Happy Saturday")
     else{
