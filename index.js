@@ -1,5 +1,8 @@
 require("dotenv").config();
 
+const express = require('express')
+const app = express()
+
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
@@ -115,4 +118,8 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-client.login(process.env.DISCORD_TOKEN);
+app.listen(8000, ()=>{
+  console.log("started")
+  client.login(process.env.DISCORD_TOKEN);
+})
+
