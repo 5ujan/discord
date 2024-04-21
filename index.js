@@ -118,6 +118,10 @@ client.on("messageCreate", async (message) => {
   }
 });
 
+app.get("/", (req, res, next)=>{
+  res.send("You're not supposed to see this.")
+})
+
 app.listen(8000, ()=>{
   console.log("started")
   client.login(process.env.DISCORD_TOKEN);
