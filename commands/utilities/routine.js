@@ -18,12 +18,10 @@ module.exports = {
     .setDescription("get today's routine")
     .addStringOption((option) => option.setName("day").setDescription("which day")),
   async execute(interaction) {
-
-    console.log("=================\n"+dayMap[interaction.options.getString(
-      "day"
-    )]+ "\n===================================")
-    const day = dayMap[interaction.options.getString("day")] || new Date().getDay()
-    console.log(day)
+    const day =
+      dayMap[interaction.options.getString("day")] === 0
+        ? 0
+        : dayMap[interaction.options.getString("day")] || new Date().getDay();
     if (day=== 6) await interaction.reply("# Happy Saturday");
     else {
       const today = routine[Object.keys(routine)[day]];
