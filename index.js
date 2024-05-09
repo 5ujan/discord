@@ -102,6 +102,30 @@ client.on("messageCreate", async (message) => {
       await message.reply("There was an error while executing this command!");
     }
   }
+  if (commandName === "laugh") {
+    // Execute the /routine slash command
+    const command = client.commands.get("laugh");
+    if (!command) return console.error("The routine command was not found.");
+
+    try {
+      // Create a fake interaction object to simulate a slash command interaction
+      const fakeInteraction = {
+        commandName: "laugh",
+        options: {},
+        user: message.author,
+        channel: message.channel,
+        guild: message.guild,
+        reply: async (options) => {
+          await message.reply(options);
+        },
+      };
+
+      await command.execute(fakeInteraction);
+    } catch (error) {
+      console.error(error);
+      await message.reply("There was an error while executing this command!");
+    }
+  }
 });
 
 client.on("messageCreate", async (message) => {
