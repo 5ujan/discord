@@ -26,14 +26,13 @@ module.exports = {
       day = dayMap[interaction.options?.getString("day")?.toLowerCase()];
     if (day === 6) await interaction.reply("# Happy Saturday");
     else {
-      console.log(day, "-------------------")
       const today = routine[Object.keys(routine)[day]];
       let string = "";
       string = string + Object.keys(dayMap)[day]?.toUpperCase() + "\n";
       today.forEach((el) => {
         el.group === "both"
-          ? (string += `${el.subject} - ${el.instructor} [${el.from} - ${el.to}]\n`)
-          : (string += `${el.group}: ${el.subject} - ${el.instructor} [${el.from} - ${el.to}]\n`);
+          ? (string += `[${el.from} - ${el.to}] ${el.subject} - ${el.instructor} \n`)
+          : (string += `[${el.from} - ${el.to}] ${el.group}: ${el.subject} - ${el.instructor} \n`);
       });
       await interaction.reply("```" + "\n" + string + "```");
     }
