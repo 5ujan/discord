@@ -77,17 +77,28 @@ client.on("messageCreate", async (message) => {
 
   const args = message.content.slice(1).trim().split(/ +/);
   const commandName = args.shift().toLowerCase();
+  const dayMap = {
+    sunday: 0,
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6,
+  };
 
   if (commandName === "routine") {
     // Execute the /routine slash command
     const command = client.commands.get("routine");
     if (!command) return console.error("The routine command was not found.");
-
+    console.log(Object.keys(dayMap)[new Date().getDay()]);
     try {
       // Create a fake interaction object to simulate a slash command interaction
       const fakeInteraction = {
         commandName: "routine",
-        options: {},
+        options: {
+          getString: () => Object.keys(dayMap)[new Date().getDay()],
+        },
         user: message.author,
         channel: message.channel,
         guild: message.guild,
