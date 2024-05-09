@@ -21,9 +21,10 @@ module.exports = {
     ),
   async execute(interaction) {
     let day = new Date().getDay();
-    if (interaction.options?.getString("day"))
-      console.log(interaction.options?.getString("day"))
+    if (interaction.options?.getString("day") !== null) {
+      console.log("here", interaction.options.getString("day"));
       day = dayMap[interaction.options?.getString("day")?.toLowerCase()];
+    }
     if (day === 6) await interaction.reply("# Happy Saturday");
     else {
       const today = routine[Object.keys(routine)[day]];
