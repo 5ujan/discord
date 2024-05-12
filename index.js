@@ -113,6 +113,32 @@ client.on("messageCreate", async (message) => {
       await message.reply("There was an error while executing this command!");
     }
   }
+  if (commandName === "routinext") {
+    // Execute the /routine slash command
+    const command = client.commands.get("routine");
+    if (!command) return console.error("The routine command was not found.");
+    console.log(Object.keys(dayMap)[new Date().getDay()]);
+    try {
+      // Create a fake interaction object to simulate a slash command interaction
+      const fakeInteraction = {
+        commandName: "routine",
+        options: {
+          getString: () => Object.keys(dayMap)[(new Date().getDay()+1)%7 ],
+        },
+        user: message.author,
+        channel: message.channel,
+        guild: message.guild,
+        reply: async (options) => {
+          await message.reply(options);
+        },
+      };
+
+      await command.execute(fakeInteraction);
+    } catch (error) {
+      console.error(error);
+      await message.reply("There was an error while executing this command!");
+    }
+  }
   if (commandName === "laugh") {
     // Execute the /routine slash command
     const command = client.commands.get("laugh");
