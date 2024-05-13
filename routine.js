@@ -1,6 +1,7 @@
 const routine = {
     sunday:[
         {subject: "Software Engineering [Practical] (Alt. Week)", instructor: "Dr. AS + SG + T", from: "10:15", to: "12:45", group: "both"},
+        {subject: "Computer Organization & Architecture (Alt. Week)", instructor: "Prof. Dr. SS + TA", from: "10:15", to: "12:45", group: "both"},
         {subject: "Computer Organization & Architecture", instructor: "Prof. Dr. SS", from: "12:45", to: "2:25", group: "both"},
         {subject: "Computer Graphics [Practical]", instructor: "ST + TA", from: "2:25", to: "4:55", group: "C"},
         {subject: "Communication English [Practical]", instructor: "RT + MD + MB", from: "2:25", to: "4:05", group: "D"},
@@ -9,17 +10,16 @@ const routine = {
     monday:[
         {subject: "Probability & Statistics", instructor: "NBA", from: "10:15", to: "11:55", group: "both"},
         {subject: "Software Engineering", instructor: "SG", from: "11:55", to: "1:35", group: "both"},
-        {subject: "Instrumentation II", instructor: "SST", from: "2:25", to: "4:05", group: "both"},
+        {subject: "Computer Graphics", instructor: "ST", from: "2:25", to: "4:05", group: "both"},
     ],
     tuesday:[
         {subject: "Software Engineering", instructor: "SG", from: "10:15", to: "11:55", group: "both"},
         {subject: "Instrumentation II", instructor: "SST", from: "11:55", to: "1:35", group: "both"},
         {subject: "Instrumentation II [Practical] (Alt. Week)", instructor: "SST + SKC + KN", from: "2:25", to: "4:55", group: "both"},
-        {subject: "Computer Organization & Architecture (Alt. Week)", instructor: "Prof. Dr. SS + TA", from: "2:25", to: "4:55", group: "both"},
     ],
     wednesday:[
         {subject: "Data Communication [Practical] (Alt. Week)", instructor: "Dr. NBA + BA + SC", from: "10:15", to: "12:45", group: "both"},
-        {subject: "Computer Graphics", instructor: "ST", from: "12:45", to: "2:25", group: "both"},
+        {subject: "Instrumentation II", instructor: "SST", from: "12:45", to: "2:25", group: "both"},
         {subject: "Probability & Statistics", instructor: "SS", from: "3:15", to: "4:55", group: "both"},
     ],
     thursday:[
@@ -36,5 +36,5 @@ const routine = {
     ]
 }
 
-console.log(Object.keys(routine)[new Date().getDay()]);
+// console.log(Object.keys(routine)[new Date().getDay()]);
 module.exports = routine
