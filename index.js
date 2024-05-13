@@ -19,6 +19,7 @@ const client = new Client({
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
+const wishes = require("./wish")
 
 for (const folder of commandFolders) {
   const commandsPath = path.join(foldersPath, folder);
@@ -174,6 +175,23 @@ client.on("messageCreate", async (message) => {
 
     if (message.content === "?bestmodever") {
       message.reply(`${userMention}, obviously`);
+    }
+    if (message.content.startsWith("?wish")) {
+      const mentionedUser = message.mentions.users.first();
+      if (!mentionedUser)
+        return message.reply("Returns happy birthday, mention user to use it");
+
+      const name = `<@${mentionedUser.id}>`; 
+      console.log(
+        wishes[Math.floor(Math.random() * wishes.length)].message
+          .split("[Friend's Name]")
+          .join(name)
+      );
+      message.reply(
+        `${wishes[Math.floor(Math.random() * wishes.length)].message
+          .split("[Friend's Name]")
+          .join(name)}`
+      );
     }
   } catch (err) {
     console.log(err);
