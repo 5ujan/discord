@@ -170,14 +170,12 @@ client.on("messageCreate", async (message) => {
   if (message.author.bot) return; // Ignore messages from bots
   if (!message.content.startsWith("?")) return; // Ignore messages that don't start with '?'
   try {
-    console.log(message.content);
     const userMention = `<@732097515763269643>`;
 
     if (message.content === "?bestmodever") {
       message.reply(`${userMention}, obviously`);
     }
     if (message.content.startsWith("?wish")) {
-      const mentionedUser = message.mentions.users.first();
       if (!mentionedUser)
         return message.reply("Returns happy birthday, mention user to use it");
 
