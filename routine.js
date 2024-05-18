@@ -31,6 +31,7 @@ const routine = {
     friday:[
         {subject: "Communication English", instructor: "RT", from: "10:15", to: "11:05", group: "C"},
         {subject: "Communication English [Practical]", instructor: "MD + MB + RT", from: "11:05", to: "12:45", group: "C"},
+        {subject: "Computer Graphics [Practical]", instructor: "ST + TA", from: "10:15", to: "12:45", group: "D"},
         {subject: "Data Communication", instructor: "Dr. NBA", from: "12:45", to: "2:25", group: "both"},
         {subject: "Computer Graphics", instructor: "ST", from: "3:15", to: "4:55", group: "both"},
     ]
