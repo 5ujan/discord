@@ -176,6 +176,7 @@ client.on("messageCreate", async (message) => {
       message.reply(`${userMention}, obviously`);
     }
     if (message.content.startsWith("?wish")) {
+      const mentionedUser = message.mentions.users.first();
       if (!mentionedUser)
         return message.reply("Returns happy birthday, mention user to use it");
 
