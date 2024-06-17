@@ -204,7 +204,7 @@ app.get("/", (req, res, next) => {
 app.listen(8000, () => {
   console.log("Server started on port 8000");
   loginToDiscord();
-  setInterval(keepAlive, 1000 * 60 * 4);
+  setInterval(keepAlive, 1000 * 60 * 10);
 });
 
 function loginToDiscord() {
