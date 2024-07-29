@@ -218,13 +218,13 @@ function loginToDiscord() {
 
 async function keepAlive() {
   try {
-    // const response = await axios.get(`https://discord-wawy.onrender.com`);
+    const response = await axios.get(`https://discord-wawy.onrender.com`);
     // const response = await axios.get(`https://discord-nhtw.onrender.com`);
-    const response = await axios.get(`https://discord-cw14.onrender.com`)
+    // const response = await axios.get(`https://discord-cw14.onrender.com`)
 
-    // const another = await axios.get(`https://bhitta.onrender.com/hello`)
+    const another = await axios.get(`https://bhitta.onrender.com/hello`)
     // const another = await axios.get(`https://bhitta-sx20.onrender.com/hello`);
-    const another = await axios.get(`https://bhitta-ufrp.onrender.com/hello`)
+    // const another = await axios.get(`https://bhitta-ufrp.onrender.com/hello`)
     console.log(`keepAlive response: ${response.status}`);
   } catch (err) {
     console.error(`keepAlive failed: ${err.message}`);
