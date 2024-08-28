@@ -218,18 +218,40 @@ function loginToDiscord() {
 
 async function keepAlive() {
   try {
-    const response = await axios.get(`https://discord-wawy.onrender.com`);
-    // const response = await axios.get(`https://discord-nhtw.onrender.com`);
-    // const response = await axios.get(`https://discord-cw14.onrender.com`)
+    const discordUrls = [
+      "https://discord-wawy.onrender.com",
+      "https://discord-nhtw.onrender.com",
+      "https://discord-cw14.onrender.com"
+    ];
+    
+    for (const url of discordUrls) {
+      try {
+        const response = await axios.get(url);
+        console.log(`keepAlive response for ${url}: ${response.status}`);
+      } catch (err) {
+        console.error(`Request failed for ${url}: ${err.message}`);
+      }
+    }
 
-    const another = await axios.get(`https://bhitta.onrender.com/hello`)
-    // const another = await axios.get(`https://bhitta-sx20.onrender.com/hello`);
-    // const another = await axios.get(`https://bhitta-ufrp.onrender.com/hello`)
-    console.log(`keepAlive response: ${response.status}`);
+    const bhittaUrls = [
+      "https://bhitta.onrender.com/hello",
+      "https://bhitta-sx20.onrender.com/hello",
+      "https://bhitta-ufrp.onrender.com/hello"
+    ];
+    
+    for (const url of bhittaUrls) {
+      try {
+        const response = await axios.get(url);
+        console.log(`keepAlive response for ${url}: ${response.status}`);
+      } catch (err) {
+        console.error(`Request failed for ${url}: ${err.message}`);
+      }
+    }
   } catch (err) {
     console.error(`keepAlive failed: ${err.message}`);
   }
 }
+
 
 // Reconnect to Discord every 10 minutes
 const reconnectInterval = setInterval(() => {
